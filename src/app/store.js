@@ -1,8 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import workoutReducer from "../features/workout/workoutTableSlice";
+import modalFormReducer from "../features/modalForm/modalFormSlice";
+//import counterReducer from '../features/counter/counterSlice';
 
 export default configureStore({
   reducer: {
-    counter: counterReducer,
+    workouts: workoutReducer,
+    modal: modalFormReducer,
   },
 });
