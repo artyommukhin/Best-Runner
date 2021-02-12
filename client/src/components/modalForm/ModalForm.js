@@ -67,14 +67,19 @@ function WorkoutEditForm() {
           api.updateWorkout(workout);
           console.log(currentWorkout.id + ' is updated');
         } else if (mode === 'create') {
-          const workout = {
+          let workout = {
             date: makeDate(values.date, values.time),
             type: values.type,
             distance: values.distance,
             comment: values.comment
           };
-          dispatch(addWorkout(workout));
-          api.addWorkout(workout);
+          api.addWorkout(workout)
+          .then(
+            (res) => {
+              workout.id = res.data.id;
+              dispatch(addWorkout(workout));
+            }
+          );
         }
         dispatch(closeModalForm());
       }
